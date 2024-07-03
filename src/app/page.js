@@ -23,8 +23,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="text-[#696A75] space-y-24">
-      <MainHeader />
+    <main className="space-y-24">
+      <MainHeader route={'Home'} />
       <MainCarousel articles={articles} />
       <MainTrending />
       <MainBlogs articles={articles} />
