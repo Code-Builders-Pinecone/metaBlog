@@ -11,8 +11,8 @@ export const MainFooter = () => {
                         <h1 className="font-bold text-black">About</h1>
                         <p className="mt-3 mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum animi optio in aut ea voluptates odio voluptate repellat, magni distinctio doloremque possimus debitis modi nulla error, ullam atque deleniti ipsam.
                         </p>
-                        <p>Email : <a>info@jstemplate.net</a></p>
-                        <p>Phone : <a>880 123 456 789</a></p>
+                        <p className="text-black">Email : <a className="text-gray-500">info@jstemplate.net</a></p>
+                        <p className="text-black">Phone : <a className="text-gray-500">880 123 456 789</a></p>
                     </div>
                     <div className="flex-1 flex xl:justify-center">
                         <ul className="flex flex-row xl:flex-col xl:gap-2 gap-6 my-5 xl:my-0">
