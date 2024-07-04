@@ -7,7 +7,7 @@ export const BlogListCard = ({ date, title, image, tags, userName, userProfle })
         console.log("hello")
     }
     return (
-        <div onClick={handlePost} className="border rounded-lg border-gray-300 p-4">
+        <div onClick={handlePost} className="border cursor-pointer rounded-lg border-gray-300 p-4">
             <img className="h-60 rounded-lg shadow-lg g-cover bg-center" src={image} alt="" />
             <div className="p-2 h-60 flex flex-col justify-between">
                 <div className="flex flex-wrap gap-4">

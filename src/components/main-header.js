@@ -13,7 +13,6 @@ export const MainHeader = ({ route }) => {
     const [page, setPage] = useState('Home');
     const handlePage = (clickpage, index) => {
         setPage(clickpage)
-        console.log(index)
     }
     useEffect(() => {
         setPage(route)

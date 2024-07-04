@@ -4,11 +4,16 @@ import { MainContainer } from "./main-container"
 import { TrendingCard } from "./trending-card"
 
 export const MainTrending = () => {
-    const [perPage, setPerPage] = useState(5);
     const [trends, setTrends] = useState([]);
+    const arr = [];
+    trends.map((item) => {
+        arr.push([item, item.public_reactions_count])
+    })
+    arr.sort((a, b) => a[1] - b[1])
+    const trendingElement = arr.slice(-5)
     const getData = async () => {
         try {
-            const res = await fetch(`https://dev.to/api/articles?pages=2&per_page=${perPage}`)
+            const res = await fetch(`https://dev.to/api/articles`)
             const data = await res.json();
             await setTrends(data)
         } catch (error) {
@@ -24,8 +29,8 @@ export const MainTrending = () => {
             <div className="overflow-x-auto">
                 <div className="flex w-fit gap-[43px]">
                     {
-                        trends.map((item, index) => (
-                            <TrendingCard zur={item.cover_image} status={item.type_of} title={item.title} />
+                        trendingElement.map((item, index) => (
+                            <TrendingCard zur={item[0].social_image} status={item[0].type_of} title={item[0].title} />
                         ))
                     }
                 </div>
