@@ -18,7 +18,7 @@ export const BlogPost = () => {
                 console.log(error)
             }
         }
-        getData()
+        getData();
     }, [id]);
     return (
         <MainContainer>
