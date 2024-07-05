@@ -7,18 +7,19 @@ import { MainContainer } from "./main-container";
 export const BlogPost = () => {
     const { id } = useParams();
     const [blog, setBlog] = useState("")
-    const getData = async () => {
-        try {
-            const res = await fetch(`https://dev.to/api/articles/${id}`)
-            const data = await res.json();
-            await setBlog(data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+
     useEffect(() => {
+        const getData = async () => {
+            try {
+                const res = await fetch(`https://dev.to/api/articles/${id}`)
+                const data = await res.json();
+                await setBlog(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
         getData()
-    }, [])
+    }, [id]);
     return (
         <MainContainer>
             <div className="w-[800px] m-auto my-24 space-y-8">

@@ -12,14 +12,14 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadMore, setLoadMore] = useState(true);
   const [articles, setArticle] = useState([]);
-  const getData = async () => {
-    setIsLoading(true)
-    const data = await getArticle();
-    setArticle(data)
-    setIsLoading(false)
-  };
+
   useEffect(() => {
-    getData();
+    const getData = async () => {
+      setIsLoading(true)
+      const data = await getArticle();
+      setArticle(data)
+      setIsLoading(false)
+    };
   }, []);
 
   return (

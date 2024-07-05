@@ -11,19 +11,20 @@ export const ListBlog = () => {
     const LoadMore = () => {
         setPerPage(perPage + 3)
     }
-    const getData = async () => {
-        try {
-            setloading(true)
-            const res = await fetch(`https://dev.to/api/articles?pages=1&per_page=${perPage}`)
-            const data = await res.json();
-            await setBlogs(data)
-            setloading(false)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+
     useEffect(() => {
-        getData()
+        const getData = async () => {
+            try {
+                setloading(true)
+                const res = await fetch(`https://dev.to/api/articles?pages=1&per_page=${perPage}`)
+                const data = await res.json();
+                await setBlogs(data)
+                setloading(false)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getData();
     }, [perPage])
     return (
         <MainContainer>

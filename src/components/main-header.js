@@ -15,8 +15,8 @@ export const MainHeader = ({ route }) => {
         setPage(clickpage)
     }
     useEffect(() => {
-        setPage(route)
-    })
+        setPage(route);
+    }, [route])
     return (
         <MainContainer background="bg-white">
             <header className="p-5 xl:pr-20 xl:pl-0 xl:py-8 flex justify-between">
