@@ -1,49 +1,70 @@
-"use client"
+'use client';
 import { MainContainer } from "./main-container";
-import { MainButton } from "./main-button";
 import { BiSolidLeftArrowSquare, BiSolidRightArrowSquare } from "react-icons/bi";
 import { useState } from "react";
 import { CarouselElement } from "./carousel-element";
 
-
 export const MainCarousel = ({ articles }) => {
-    const [persent, setPersent] = useState(1);
-    const [transition, setTransition] = useState(false)
-    const arr = [];
+    const [percent, setPercent] = useState(1);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+
     if (articles.length === 0) {
         return <div>No articles available.</div>;
     }
-    articles.map((item) => {
-        arr.push([item, item.published_at])
-    })
-    arr.sort((a, b) => a[1] - b[1])
-    const carouseElement = arr.slice(-4)
-    // let index = 1;
-    // useEffect(() => {
-    //     persent == 0 ? setPersent(400) : null
-    // }, [persent])
+
+    const sortedArticles = [...articles].sort((a, b) => new Date(a.published_at) - new Date(b.published_at));
+    const carouselElements = sortedArticles.slice(-3);
+
     const clickNext = () => {
-        setPersent((persent + 1) % 4)
-    }
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setPercent((prevPercent) => (prevPercent + 1) % 5);
+    };
+
     const clickPrev = () => {
-        setPersent(persent === 0 ? 3 : (persent - 1) % 4)
-    }
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setPercent((prevPercent) => (prevPercent - 1 + 5) % 5); // Ensure percent is non-negative
+    };
+
+    const handleTransitionEnd = () => {
+        setIsTransitioning(false);
+        if (percent === 0) {
+            setPercent(3);
+        } else if (percent === 4) {
+            setPercent(1);
+        }
+    };
+    console.log(percent)
     return (
         <MainContainer>
             <div className="w-full h-[37.5rem] rounded-lg relative overflow-hidden">
-                <div className={`absolute bg-green-200 w-full h-full -translate-x-[${persent * 100}%] transition duration-1000 flex`}>
-                    {carouseElement.map((item, index) => (
-                        <img className="w-full h-full" src={item[0].cover_image} />
-                    ))}
+                <div
+                    className={`absolute bg-green-200 w-[500%] h-full flex ${isTransitioning ? 'duration-1000' : ''}`}
+                    style={{ transform: `translateX(-${(percent * 100) / 5}%)` }}
+                    onTransitionEnd={handleTransitionEnd}
+                >
+                    <div className="w-full h-full" style={{ backgroundImage: `url(${carouselElements[2].cover_image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+                    <div className="w-full h-full" style={{ backgroundImage: `url(${carouselElements[0].cover_image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+                    <div className="w-full h-full" style={{ backgroundImage: `url(${carouselElements[1].cover_image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+                    <div className="w-full h-full" style={{ backgroundImage: `url(${carouselElements[2].cover_image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+                    <div className="w-full h-full" style={{ backgroundImage: `url(${carouselElements[0].cover_image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
                 </div>
-                {carouseElement.map((item, index) => index == persent ? <CarouselElement title={item[0].title} published_at={item[0].published_at} tag_list={item[0].tag_list} /> : (<></>))}
+                {carouselElements.map((item, index) =>
+                    index + 1 === percent || percent === 4 || percent === 0 ? (
+                        <CarouselElement
+                            key={item.id}
+                            title={item.title}
+                            published_at={item.published_at}
+                            tag_list={item.tag_list}
+                        />
+                    ) : null
+                )}
             </div>
-            <div className="flex justify-center text-4xl xl:justify-end">
+            <div className="flex justify-center bg-contain text-4xl xl:justify-end">
                 <BiSolidLeftArrowSquare onClick={clickPrev} />
                 <BiSolidRightArrowSquare onClick={clickNext} />
             </div>
         </MainContainer>
     );
 };
-
-

@@ -27,7 +27,7 @@ export default function Home() {
       <MainHeader route={'Home'} />
       <MainCarousel articles={articles} />
       <MainTrending />
-      <MainBlogs articles={articles} />
+      <MainBlogs />
       <MainFooter />
     </main>
   );

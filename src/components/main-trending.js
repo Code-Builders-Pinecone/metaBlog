@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { MainContainer } from "./main-container"
 import { TrendingCard } from "./trending-card"
+import Link from "next/link";
 
 export const MainTrending = () => {
     const [trends, setTrends] = useState([]);
@@ -30,7 +31,9 @@ export const MainTrending = () => {
                 <div className="flex w-fit gap-[43px]">
                     {
                         trendingElement.map((item, index) => (
-                            <TrendingCard zur={item[0].social_image} status={item[0].type_of} title={item[0].title} />
+                            <Link key={index} href={`/blog/${item[0].id}`}>
+                                <TrendingCard zur={item[0].social_image} status={item[0].type_of} title={item[0].title} />
+                            </Link>
                         ))
                     }
                 </div>

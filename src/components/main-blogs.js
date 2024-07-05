@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { BlogCard } from "./blog-card"
 import { MainContainer } from "./main-container"
+import Link from "next/link"
 
 export const MainBlogs = () => {
     const [perPage, setPerPage] = useState(9);
@@ -16,8 +17,9 @@ export const MainBlogs = () => {
         "React",
         "JavaScript",
     ]
-    const handleCategory = (catagory) => {
-        setCategory(catagory);
+
+    const handleCategory = (cat) => {
+        setCategory(cat);
         setPerPage(9);
     }
     const getData = async () => {
@@ -54,12 +56,14 @@ export const MainBlogs = () => {
             <div className={`grid grid-cols-1 xl:grid-cols-3 overflow-hidden gap-5`}>
                 {
                     blogs.map((item, index) => (
-                        < BlogCard key={index}
-                            date={item.published_at}
-                            title={item.description}
-                            image={item.social_image}
-                            tags={item.tag_list}
-                        />
+                        <Link key={index} href={`/blog/${item.id}`}>
+                            < BlogCard key={index}
+                                date={item.published_at}
+                                title={item.description}
+                                image={item.social_image}
+                                tags={item.tag_list}
+                            />
+                        </Link>
                     ))
                 }
             </div>

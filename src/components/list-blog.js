@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { MainContainer } from "./main-container"
 import { BlogListCard } from "./list-blog-card"
+import Link from "next/link"
 
 export const ListBlog = () => {
     const [perPage, setPerPage] = useState(12);
@@ -30,14 +31,16 @@ export const ListBlog = () => {
             <div className={`grid grid-cols-1 xl:grid-cols-3 overflow-hidden gap-5`}>
                 {
                     blogs.map((item, index) => (
-                        < BlogListCard key={index}
-                            date={item.published_at}
-                            title={item.description}
-                            image={item.social_image}
-                            tags={item.tag_list}
-                            userName={item.user.name}
-                            userProfle={item.user.profile_image}
-                        />
+                        <Link key={index} href={`/blog/${item.id}`}>
+                            < BlogListCard
+                                date={item.published_at}
+                                title={item.description}
+                                image={item.social_image}
+                                tags={item.tag_list}
+                                userName={item.user.name}
+                                userProfle={item.user.profile_image}
+                            />
+                        </Link>
                     ))
                 }
             </div>
