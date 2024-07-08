@@ -4,6 +4,7 @@ import { LuMenu, LuSearch } from "react-icons/lu";
 import { MainContainer } from "./main-container";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { MainMenu } from "./main-menu";
 const pages = [
     "Home",
     "Blog",
@@ -25,7 +26,7 @@ export const MainHeader = ({ route }) => {
                     <ul className="flex gap-10 items-center px-56">
                         {
                             pages.map((item, index) => (
-                                <li key={index} className={page == item ? "text-yellow-300" : ""} onClick={() => handlePage(item, index)}><Link href={item == 'Contact' ? "contact" : item == 'Blog' ? "blog" : "/"}>{item}</Link></li>
+                                <li key={index} className={page == item ? "text-yellow-300" : ""} onClick={() => handlePage(item, index)}><Link href={item == 'Contact' ? "/contact" : item == 'Blog' ? "/blog" : "/"}>{item}</Link></li>
                             ))
                         }
                     </ul>
@@ -34,6 +35,7 @@ export const MainHeader = ({ route }) => {
                 </div>
                 <LuMenu fontSize="2em" className="xl:hidden"></LuMenu>
             </header >
+            <MainMenu />
         </MainContainer>
     )
 }

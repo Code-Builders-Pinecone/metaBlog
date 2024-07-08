@@ -13,7 +13,7 @@ export const BlogCard = ({ date, title, image, tags }) => {
                         ))
                     }
                 </div>
-                <p className="text-black text-2xl">{title}</p>
+                <p className="text-black text-2xl max-h-32 overflow-hidden">{title}</p>
                 <p>{format(published_at, 'LLLL d, yyyy')}</p>
             </div>
         </div>

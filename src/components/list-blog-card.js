@@ -16,7 +16,7 @@ export const BlogListCard = ({ date, title, image, tags, userName, userProfle })
                         ))
                     }
                 </div>
-                <p className="text-black text-2xl">{title}</p>
+                <p className="text-black text-2xl max-h-32 overflow-hidden">{title}</p>
                 <div className="flex justify-between items-center">
                     <div className="flex gap-4 items-center">
                         <div className="w-8 h-8 bg-gray-100 rounded-full" style={{ backgroundImage: `url(${userProfle})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>

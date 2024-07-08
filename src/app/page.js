@@ -3,7 +3,7 @@ import { MainBlogs, MainCarousel, MainFooter, MainHeader, MainTrending } from "@
 
 export default function Home() {
   return (
-    <main className="space-y-24">
+    <main>
       <MainHeader route={'Home'} />
       <MainCarousel />
       <MainTrending />

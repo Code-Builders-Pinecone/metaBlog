@@ -1,6 +1,7 @@
 import { MetaBlogLogo } from "@/assets/metaBlog-logo"
 import { MainContainer } from "./main-container"
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import Link from "next/link";
 
 export const MainFooter = () => {
     return (
@@ -16,9 +17,9 @@ export const MainFooter = () => {
                     </div>
                     <div className="flex-1 flex xl:justify-center">
                         <ul className="flex flex-row xl:flex-col xl:gap-2 gap-6 my-5 xl:my-0">
-                            <li>Home</li>
-                            <li>Blog</li>
-                            <li>Contact</li>
+                            <li><Link href="/">Home</Link></li>
+                            <li><Link href="/blog">Blog</Link></li>
+                            <li><Link href="/contact">Contact</Link></li>
                         </ul>
                     </div>
                     <div className="flex-1 flex gap-6">

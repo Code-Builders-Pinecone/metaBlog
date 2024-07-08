@@ -26,6 +26,7 @@ export const MainTrending = () => {
     }, [])
     return (
         <MainContainer>
+            <div className="my-24">
             <h1 className="text-black font-bold text-xl mb-6">Trending</h1>
             <div className="overflow-x-auto">
                 <div className="flex w-fit gap-[43px]">
@@ -37,6 +38,7 @@ export const MainTrending = () => {
                         ))
                     }
                 </div>
+            </div>
             </div>
         </MainContainer>
     )

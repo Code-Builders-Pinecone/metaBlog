@@ -3,7 +3,6 @@ import { MainContainer } from "./main-container";
 import { BiSolidLeftArrowSquare, BiSolidRightArrowSquare } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { CarouselElement } from "./carousel-element";
-import { Truculenta } from "next/font/google";
 import { parseISO } from "date-fns";
 
 export const MainCarousel = () => {
@@ -28,9 +27,12 @@ export const MainCarousel = () => {
 
     const sortedArticles = [...blogs].sort((a, b) => parseISO(a.published_at) - parseISO(b.published_at));
     const carouselElements = sortedArticles.slice(-3);
+    carouselElements.map((item)=>{item.cover_image==null ? item.cover_image="https://dev.to/social_previews/article/321665.png" : null})
     if (carouselElements.length == 0) {
         return (
-            <div className="bg-white w-24 h-24 flex items-center justify-center rounded-full border-8 border-l-black">
+            <div className="w-full h-[37.5rem] flex items-center justify-center">
+                <div className="bg-white w-24 h-24 flex  animate-spin items-center justify-center rounded-full border-8 border-l-black">
+                </div>
             </div>
         )
     }
@@ -57,7 +59,7 @@ export const MainCarousel = () => {
 
     return (
         <MainContainer>
-            <div className="w-full h-[37.5rem] rounded-lg relative overflow-hidden">
+            <div className="w-full h-[37.5rem] rounded-lg relative overflow-hidden shadow-lg">
                 <div
                     className={`absolute bg-green-200 w-[500%] h-full flex ${isTransitioning ? 'duration-1000' : ''}`}
                     style={{ transform: `translateX(-${(percent * 100) / 5}%)` }}
