@@ -1,7 +1,7 @@
-import { MetaBlogLogo } from "@/assets/metaBlog-logo"
 import { MainContainer } from "./main-container"
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
+import Image from 'next/image'
 
 export const MainFooter = () => {
     return (
@@ -31,7 +31,12 @@ export const MainFooter = () => {
                 </div>
                 <div className="flex flex-col xl:flex-row justify-between xl:items-center py-8 space-y-12 xl:space-y-0 border-t border-gray-300">
                     <div className="flex space-x-2">
-                        <MetaBlogLogo></MetaBlogLogo>
+                    <Image
+        src="/MetaBlogLogo.png"
+        width={48}
+        height={48}
+        alt="Picture of the author"
+      />
                         <div>
                             <h1 className="flex text-xl text-black">Meta<p className="font-bold">Blog</p></h1>
                             <p>© All Rights Reserved.</p>

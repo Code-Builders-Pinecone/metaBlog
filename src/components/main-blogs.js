@@ -46,7 +46,9 @@ export const MainBlogs = () => {
                         <li key={index} className={category == item ? 'text-yellow-400 ' : ''} onClick={() => handleCategory(item)}>{item}</li>
                     ))}
                 </ul>
-                <p className="hidden xl:flex">View All</p>
+                <p className="hidden xl:flex">
+                    <Link href="/blog">View All</Link>
+                </p>
             </div>
             <div className={`grid grid-cols-1 xl:grid-cols-3 overflow-hidden gap-5`}>
                 {
