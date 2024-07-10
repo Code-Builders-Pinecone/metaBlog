@@ -59,7 +59,7 @@ export const MainHeader = ({ route }) => {
             className="px-4 py-2 bg-gray-200 text-sm rounded-lg w-40"
             placeholder="Search"
           />
-          <LuSearch className="absolute right-2 top-[10px]"/>
+          <LuSearch className="absolute right-2 top-[10px]" />
         </div>
         <LuMenu fontSize="2em" className="xl:hidden" onClick={handleSide} />
       </header>

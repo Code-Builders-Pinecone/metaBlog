@@ -7,17 +7,17 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 export const MainCarousel = () => {
   const [blogs, setBlogs] = useState([]);
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [percent, setPercent] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   useEffect(() => {
     const getData = async () => {
       try {
-        setloading(true);
+        setLoading(true);
         const res = await fetch(`https://dev.to/api/articles`);
         const data = await res.json();
         await setBlogs(data);
-        setloading(false);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
