@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { CarouselElement } from "./carousel-element";
 import { parseISO } from "date-fns";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import Link from "next/link";
+import { CarouselBackgroundLink } from "./carousel-background-link";
 
 export const MainCarousel = () => {
   const [blogs, setBlogs] = useState([]);
@@ -20,10 +22,23 @@ export const MainCarousel = () => {
         setLoading(false);
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     };
     getData();
-  }, []);
+    const id = setInterval(() => {
+      if (isTransitioning) return;
+      setIsTransitioning(true);
+      setPercent((prevBen) => {
+        const newBen = (prevBen + 1) % 5;
+        if (percent === 0) setPercent(3);
+        else if (percent === 4) setPercent(1);
+        return newBen;
+      });
+      console.log(percent);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [percent, isTransitioning]);
 
   const sortedArticles = [...blogs].sort(
     (a, b) => parseISO(a.published_at) - parseISO(b.published_at)
@@ -72,59 +87,41 @@ export const MainCarousel = () => {
           style={{ transform: `translateX(-${(percent * 100) / 5}%)` }}
           onTransitionEnd={handleTransitionEnd}
         >
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url(${carouselElements[2].cover_image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></div>
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url(${carouselElements[0].cover_image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></div>
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url(${carouselElements[1].cover_image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></div>
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url(${carouselElements[2].cover_image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></div>
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url(${carouselElements[0].cover_image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></div>
+          <CarouselBackgroundLink
+            image={carouselElements[2].cover_image}
+            id={carouselElements[2].id}
+          />
+          <CarouselBackgroundLink
+            image={carouselElements[0].cover_image}
+            id={carouselElements[0].id}
+          />
+          <CarouselBackgroundLink
+            image={carouselElements[1].cover_image}
+            id={carouselElements[1].id}
+          />
+          <CarouselBackgroundLink
+            image={carouselElements[2].cover_image}
+            id={carouselElements[2].id}
+          />
+          <CarouselBackgroundLink
+            image={carouselElements[0].cover_image}
+            id={carouselElements[0].id}
+          />
         </div>
         {carouselElements.map((item, index) =>
           index + 1 === percent || percent === 4 || percent === 0 ? (
-            <CarouselElement
-              key={item.id}
-              title={item.title}
-              published_at={item.published_at}
-              tag_list={item.tag_list}
-            />
+            <Link key={index} href={`/blog/${item.id}`}>
+              <CarouselElement
+                key={item.id}
+                title={item.title}
+                published_at={item.published_at}
+                tag_list={item.tag_list}
+              />
+            </Link>
           ) : null
         )}
       </div>
-      <div className="flex justify-center bg-contain mt-2 gap-2 rounded-lg text-5xl xl:justify-end">
+      <div className="flex justify-center bg-contain mt-2 gap-2 rounded-lg text-5xl lg:justify-end">
         <SlArrowLeft
           onClick={clickPrev}
           style={{

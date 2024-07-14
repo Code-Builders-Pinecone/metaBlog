@@ -20,7 +20,7 @@ export const MainHeader = ({ route }) => {
   }, [route]);
   return (
     <MainContainer background="bg-white">
-      <header className="p-5 xl:pr-20 xl:pl-0 xl:py-8 flex justify-between">
+      <header className="p-5 lg:pr-20 lg:pl-0 lg:py-8 flex justify-between">
         <div className="flex items-center gap-2 text-2xl text-black">
           <Image
             src="/MetaBlogLogo.png"
@@ -32,8 +32,8 @@ export const MainHeader = ({ route }) => {
             Meta<span className="font-bold">Blog</span>
           </p>
         </div>
-        <div className="xl:flex hidden relative">
-          <ul className="flex gap-10 items-center px-56">
+        <div className="lg:flex hidden relative justify-between lg:w-[640px] ">
+          <ul className="flex gap-10 items-center">
             {pages.map((item, index) => (
               <li
                 key={index}
@@ -56,14 +56,14 @@ export const MainHeader = ({ route }) => {
           </ul>
           <input
             type="text"
-            className="px-4 py-2 bg-gray-200 text-sm rounded-lg w-40"
+            className="px-4 py-2 bg-gray-200 text-lg rounded-lg w-40"
             placeholder="Search"
           />
           <LuSearch className="absolute right-2 top-[10px]" />
         </div>
-        <LuMenu fontSize="2em" className="xl:hidden" onClick={handleSide} />
+        <LuMenu fontSize="2em" className="lg:hidden" onClick={handleSide} />
       </header>
-      <div className="xl:hidden">
+      <div className="lg:hidden">
         <MainMenu
           handlePage={handlePage}
           page={page}
