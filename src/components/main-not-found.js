@@ -4,7 +4,7 @@ import { MainContainer } from "./main-container";
 export const MainNotFound = () => {
   return (
     <MainContainer>
-      <div className="flex flex-col xl:flex-row gap-10 sm:w-[642px] m-auto">
+      <div className="flex flex-col lg:flex-row gap-10 lg:w-[642px] m-auto">
         <h1 className="text-8xl text-black m-auto">404</h1>
         <div className="border"></div>
         <div className="space-y-5 text-center">
