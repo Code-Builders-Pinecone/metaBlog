@@ -35,7 +35,6 @@ export const MainCarousel = () => {
         else if (percent === 4) setPercent(1);
         return newBen;
       });
-      console.log(percent);
     }, 5000);
     return () => clearInterval(id);
   }, [percent, isTransitioning]);
@@ -81,9 +80,8 @@ export const MainCarousel = () => {
     <MainContainer>
       <div className="w-full h-[37.5rem] rounded-lg relative overflow-hidden shadow-lg">
         <div
-          className={`absolute bg-green-200 w-[500%] h-full flex ${
-            isTransitioning ? "duration-1000" : ""
-          }`}
+          className={`absolute bg-green-200 w-[500%] h-full flex ${isTransitioning ? "duration-1000" : ""
+            }`}
           style={{ transform: `translateX(-${(percent * 100) / 5}%)` }}
           onTransitionEnd={handleTransitionEnd}
         >

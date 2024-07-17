@@ -5,13 +5,19 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MainMenu } from "./main-menu";
+import { MainSearch } from "./main-search";
 const pages = ["Home", "Blog", "Contact"];
 export const MainHeader = ({ route }) => {
   const [page, setPage] = useState("Home");
   const [side, setSide] = useState(false);
+  const [handleS, sethandleS] = useState(false);
+  const [search, setSearch] = useState("");
   const handlePage = (clickpage, index) => {
     setPage(clickpage);
   };
+  const handleSearch = () => {
+    sethandleS(!handleS)
+  }
   const handleSide = () => {
     setSide(!side);
   };
@@ -45,8 +51,8 @@ export const MainHeader = ({ route }) => {
                     item == "Contact"
                       ? "/contact"
                       : item == "Blog"
-                      ? "/blog"
-                      : "/"
+                        ? "/blog"
+                        : "/"
                   }
                 >
                   {item}
@@ -58,20 +64,22 @@ export const MainHeader = ({ route }) => {
             type="text"
             className="px-4 py-2 bg-gray-200 text-lg rounded-lg w-40"
             placeholder="Search"
+            onChange={e => setSearch(e.target.value)}
+            onFocus={handleSearch}
+            onBlur={handleSearch}
           />
           <LuSearch className="absolute right-2 top-[10px]" />
         </div>
         <LuMenu fontSize="2em" className="lg:hidden" onClick={handleSide} />
       </header>
-      <div className="lg:hidden">
-        <MainMenu
-          handlePage={handlePage}
-          page={page}
-          pages={pages}
-          handleSide={handleSide}
-          side={side}
-        />
-      </div>
+      <MainSearch search={search} handleS={handleS} />
+      <MainMenu
+        handlePage={handlePage}
+        page={page}
+        pages={pages}
+        handleSide={handleSide}
+        side={side}
+      />
     </MainContainer>
   );
 };

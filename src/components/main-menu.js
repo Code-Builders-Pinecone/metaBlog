@@ -4,9 +4,8 @@ import { IoClose } from "react-icons/io5";
 export const MainMenu = ({ pages, handlePage, page, side, handleSide }) => {
   return (
     <div
-      className={`fixed h-full text-xl bg-white w-80 -right-0 ${
-        side ? "-right-0" : "-right-full"
-      } p-4 z-10 top-0 shadow-2xl`}
+      className={`fixed h-full text-xl bg-white w-80 -right-0 lg:hidden ${side ? "-right-0" : "-right-full"
+        } p-4 z-10 top-0 shadow-2xl`}
     >
       <div className="flex items-center justify-between p-5 text-black">
         <div className="flex items-center gap-2 text-xl">
