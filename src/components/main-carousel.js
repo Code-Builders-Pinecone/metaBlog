@@ -30,7 +30,7 @@ export const MainCarousel = () => {
       if (isTransitioning) return;
       setIsTransitioning(true);
       setPercent((prevBen) => {
-        const newBen = (prevBen + 1) % 5;
+        const newBen = (prevBen + 1) % 5 ;
         if (percent === 0) setPercent(3);
         else if (percent === 4) setPercent(1);
         return newBen;

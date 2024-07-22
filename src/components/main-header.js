@@ -6,24 +6,34 @@ import Link from "next/link";
 import Image from "next/image";
 import { MainMenu } from "./main-menu";
 import { MainSearch } from "./main-search";
-const pages = ["Home", "Blog", "Contact"];
-export const MainHeader = ({ route }) => {
-  const [page, setPage] = useState("Home");
+import { usePathname } from "next/navigation";
+const paths = [
+  {
+    name: "Home",
+    path: "/"
+  },
+  {
+    name: "Blog",
+    path: "/blog"
+  },
+  {
+    name: "Contact",
+    path: "/contact"
+  }
+]
+export const MainHeader = () => {
   const [side, setSide] = useState(false);
   const [handleS, sethandleS] = useState(false);
+  const pathname = usePathname();
   const [search, setSearch] = useState("");
-  const handlePage = (clickpage, index) => {
-    setPage(clickpage);
-  };
+
   const handleSearch = () => {
     sethandleS(!handleS)
   }
   const handleSide = () => {
     setSide(!side);
   };
-  useEffect(() => {
-    setPage(route);
-  }, [route]);
+
   return (
     <MainContainer background="bg-white">
       <header className="p-5 lg:pr-20 lg:pl-0 lg:py-8 flex justify-between">
@@ -40,22 +50,15 @@ export const MainHeader = ({ route }) => {
         </div>
         <div className="lg:flex hidden relative justify-between lg:w-[640px] ">
           <ul className="flex gap-10 items-center">
-            {pages.map((item, index) => (
+            {paths.map((item, index) => (
               <li
                 key={index}
-                className={page == item ? "text-yellow-300" : ""}
-                onClick={() => handlePage(item, index)}
+                className={item.path == pathname ? "text-yellow-300" : ""}
               >
                 <Link
-                  href={
-                    item == "Contact"
-                      ? "/contact"
-                      : item == "Blog"
-                        ? "/blog"
-                        : "/"
-                  }
+                  href={item.path}
                 >
-                  {item}
+                  {item.name}
                 </Link>
               </li>
             ))}
@@ -74,10 +77,9 @@ export const MainHeader = ({ route }) => {
       </header>
       <MainSearch search={search} handleS={handleS} />
       <MainMenu
-        handlePage={handlePage}
-        page={page}
-        pages={pages}
+        paths={paths}
         handleSide={handleSide}
+        pathname={pathname}
         side={side}
       />
     </MainContainer>

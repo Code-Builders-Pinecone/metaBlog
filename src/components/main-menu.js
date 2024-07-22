@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { IoClose } from "react-icons/io5";
-export const MainMenu = ({ pages, handlePage, page, side, handleSide }) => {
+export const MainMenu = ({ paths, pathname, side, handleSide }) => {
   return (
     <div
       className={`fixed h-full text-xl bg-white w-80 -right-0 lg:hidden ${side ? "-right-0" : "-right-full"
@@ -22,18 +22,15 @@ export const MainMenu = ({ pages, handlePage, page, side, handleSide }) => {
         <IoClose style={{ fontSize: "2em" }} onClick={handleSide} />
       </div>
       <ul className="p-5 border-y space-y-4">
-        {pages.map((item, index) => (
+        {paths.map((item, index) => (
           <li
             key={index}
-            className={page == item ? "text-yellow-300" : ""}
-            onClick={() => handlePage(item, index)}
+            className={item.path == pathname ? "text-yellow-300" : ""}
           >
             <Link
-              href={
-                item == "Contact" ? "/contact" : item == "Blog" ? "/blog" : "/"
-              }
+              href={item.path}
             >
-              {item}
+              {item.name}
             </Link>
           </li>
         ))}
