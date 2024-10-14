@@ -11,7 +11,6 @@ export const BlogListCard = ({
 }) => {
   const published_at = parseISO(date);
   const handlePost = () => {
-    console.log("hello");
   };
   return (
     <div
