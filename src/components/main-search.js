@@ -16,8 +16,8 @@ export const MainSearch = ({ search, handleS }) => {
                 console.log(error);
             }
         };
-        getData();
-    }, [cards]);
+        getData()
+    }, []);
     useEffect(() => {
         const filteredCards = blogs.filter((item) =>
             item.title.toLowerCase().includes(search.toLowerCase())

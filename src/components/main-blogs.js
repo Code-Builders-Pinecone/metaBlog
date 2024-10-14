@@ -24,8 +24,7 @@ export const MainBlogs = () => {
       try {
         setloading(true);
         const res = await fetch(
-          `https://dev.to/api/articles?pages=1&per_page=${perPage}${
-            category !== "All" ? `&tag=${category}` : ""
+          `https://dev.to/api/articles?pages=1&per_page=${perPage}${category !== "All" ? `&tag=${category}` : ""
           }`
         );
         const data = await res.json();
@@ -80,9 +79,3 @@ export const MainBlogs = () => {
     </MainContainer>
   );
 };
-// setloading(true)
-// fetch(`https://dev.to/api/articles?pages=1&per_page=${perPage}`)
-//     .then((res) => res.json())
-//     .then((data) => setBlogs(data))
-//     .catch((err) => console.log(err))
-//     .finally(() => setloading(false))
